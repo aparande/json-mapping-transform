@@ -1,6 +1,7 @@
 # JSON Map Transform
 [![Gem Version](https://badge.fury.io/rb/json-mapping-transform.svg)](https://badge.fury.io/rb/json-mapping-transform)
 
+[See Documentation](https://rubydoc.info/gems/json-mapping-transform)
 
 ## Overview
 When building data pipelines, it is often useful to extract and transfrom data from an input JSON and output it in a different format. The standard process for doing this in Ruby is to write a series of if-else logic coupled with for-loops. This code ends up being largely redundant, confusing, and difficult to maintain or change. This Gem provides an easy and extensible solution to this problem by allowing you to define your mapping in YAML and apply it to any JSON object in a single line of code.
