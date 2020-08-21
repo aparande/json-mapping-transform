@@ -1,0 +1,44 @@
+---
+conditions:
+  fruit_condition:
+   class: InCondition
+   predicate:
+   - Apples
+   - Oranges
+  cheap_condition:
+    class: LessThanCondition
+    predicate: 1
+  high_performance_condition:
+    class: AndCondition
+    predicate:
+    - class: LessThanCondition
+      predicate: 10000
+    - class: GreaterThanCondition
+      predicate: 1000
+  low_performance_condition:
+    class: OrCondition
+    predicate:
+    - class: LessThanCondition
+      predicate: 1000
+    - class: InCondition
+      predicate:
+      - 1000
+  
+objects:
+- name: fruits
+  path: "/inventory/*"
+  conditions:
+  - name: fruit_condition
+    field: "/itemName"
+- name: cheap_food
+  path: "inventory/*"
+  conditions:
+  - name: cheap_condition
+    field: "/price"
+- name: performance
+  path: "/weeklyVisitors"
+  conditions:
+  - name: high_performance_condition
+    output: high
+  - name: low_performance_condition
+    output: low

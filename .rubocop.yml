@@ -1,0 +1,31 @@
+AllCops:
+  Exclude:
+    - 'spec/spec_helper.rb'
+    - 'json-mapping-transform.gemspec'
+    - 'vendor/**/*'
+    - 'coverage/**'
+    - 'bin/**'
+    - '.bundle/**'
+Layout/LineLength:
+  Max: 140
+  
+Metrics/AbcSize:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 50
+Metrics/ClassLength:
+  Max: 200
+Metrics/PerceivedComplexity:
+  Max: 15
+Metrics/CyclomaticComplexity:
+  Max: 15
+Metrics/BlockLength:
+  Exclude: 
+  - spec/**/*
+
+Style/IfUnlessModifier:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/SingleLineMethods:
+  Enabled: false

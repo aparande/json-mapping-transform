@@ -1,0 +1,21 @@
+---
+objects:
+- name: name
+  path: "/name"
+- name: location
+  path: "/location"
+- name: weekly_visitors
+  path: "/weeklyVisitors"
+- name: store_id
+  path: "/storeId"
+- name: employees
+  path: "/employees/*/name"
+- name: inventory
+  path: "/inventory/*"
+  attributes:
+  - name: item_name
+    path: /itemName
+  - name: price
+    path: /price
+  - name: unit
+    path: /unit

@@ -1,0 +1,7 @@
+---
+objects:
+- name: name
+  path: "/name"
+- name: inventory
+  path: "/inventory/*/"
+  transform: listing_transform

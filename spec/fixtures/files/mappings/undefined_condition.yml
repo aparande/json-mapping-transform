@@ -1,0 +1,9 @@
+---
+conditions:
+  apple_condition:
+   class: FakeCondition
+objects:
+- name: apple
+  path: "/inventory"
+  conditions:
+  - name: apple_condition

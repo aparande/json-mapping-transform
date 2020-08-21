@@ -1,0 +1,7 @@
+---
+objects:
+- name: name
+  path: "/name"
+- name: profits
+  path: "/profits"
+  default: 0
