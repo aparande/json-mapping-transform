@@ -35,14 +35,44 @@ Require the mapping in your code
 require 'json_mapping'
 ```
 
+## Basic Usage
+Define your schema in a YAML file.
+```yaml
+# schema.yaml
+---
+objects:
+  - name: food
+    path: "/fruit"
+  - name: vehicle
+    path: "/car/honda"
+```
+Instantiate a new JsonMapping class with the schema path.
+```ruby
+schema_path = 'path/to/schema.yaml'
+
+mapping = JsonMapping.new(schema_path)
+```
+Call the `#apply` method on source data.
+```ruby
+source_data = {
+  'fruit' => 'banana',
+  'car' => {
+    'honda' => 'Civic'
+  }
+}
+
+output = mapping.apply(source_data)
+# output => {"food"=>"banana", "vehicle"=>"Civic"}
+```
+
 ## Objects
-Objects are the output keys of the mapping. `JsonMapper#map` will output a single Ruby Hash when applied to an input.
+Objects are the output keys of the mapping. `JsonMapper#apply` will output a single Ruby Hash when applied to an input.
 The following rules apply to objects:
 - Each object has a name that translates to its key in the output JSON
 - The **path** specifies the input key in the source JSON that the object corresponds to
   - Paths are defined from the top level of the JSON: `/`
   - When `*` is included in the path, the result will be an array
-  - When a path is not found (or not proviided), the object evaluates to `nil`
+  - When a path is not found (or not provided), the object evaluates to `nil`
 - Objects can have a **default** value which is returned if the path evaluates to `nil`
 - Objects can have **attributes** which are a list of more objects (nested JSON objects)
   - **Note:** Paths in nested objects are relative to the path of the top-level object
@@ -173,7 +203,8 @@ objects:
 transforms = {
   'listing_transform' => ->(list) { list.map { |x| "#{x['itemName']} at $#{x['price']}/#{x['unit']}" } }
 }
-output = JsonMapping.new(path, transforms).map(store_fixture)
+
+output = JsonMapping.new(schema_path, transforms).apply(store_fixture)
 ```
 #### Output
 ```json
@@ -219,7 +250,7 @@ module Conditions
   end
 end
 
-output = JsonMapping.new(path).map(store_fixture)
+output = JsonMapping.new(schema_path).apply(store_fixture)
 ```
 #### Output
 ```json
